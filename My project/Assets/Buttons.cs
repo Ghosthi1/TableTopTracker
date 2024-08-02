@@ -8,14 +8,27 @@ using System.Diagnostics.Tracing;
 
 public class Buttons : MonoBehaviour
 {
-    private int counter = 0;
+    public int counter = 0;
     public void AddButton(TextMeshProUGUI currentText){
             counter += 1;
-            Text oldText = currentText.GetComponent<Text>();
-            currentText.text = oldText + " " + counter.ToString();
+            currentText.text = counter.ToString();
+            LimitChecker(currentText);
     }
 
-    public void MinusButton(TextMeshProUGUI text){
+    public void MinusButton(TextMeshProUGUI currentText){
+            counter -= 1;
+            currentText.text = counter.ToString();
+            LimitChecker(currentText);
+    }
 
+    private void LimitChecker(TextMeshProUGUI currentText){
+            //checks the bounds of the values 
+            //gets string value 
+            String currentnumber = currentText.ToString();
+            //converts to int 
+            int.TryParse(currentnumber , out int intNumber);
+            if(intNumber < 0 ){
+                currentText.text = 0.ToString();
+            }
     }
 }
