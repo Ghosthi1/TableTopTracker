@@ -9,37 +9,46 @@ using UnityEngine.UIElements;
 
 public class Buttons : MonoBehaviour
 {
-    private int counter = 1;
+
     private int round = 1;
-    private TextMeshProUGUI currentTexts ;
+    public int turn = 1;
 
-    public void AddButton(TextMeshProUGUI currentText){
-            counter ++;
+    //plus for true neg for false 
+    private bool whatbuttonPressed;
+
+    public void ButtonPressed(GameObject button){
+        //gets the button pressed 
+        if(button.CompareTag("Plus")){
+            whatbuttonPressed = true;
+        }
+        if(button.CompareTag("Negative")){
+            whatbuttonPressed = false;
+        }
+    }
+
+    private void AddButton(TextMeshProUGUI currentText, ref int correctCounter){
+            correctCounter ++;
             //coverts counter to sttring and updates game 
-            currentText.text = counter.ToString();
-            //global variable
-            currentTexts = currentText;
+            currentText.text = correctCounter.ToString();
     }
 
-    public void MinusButton(TextMeshProUGUI currentText){
-            counter --;
-            currentText.text = counter.ToString();
-            //global variable
-            currentTexts = currentText;
+    public void MinusButton(TextMeshProUGUI currentText, int correctCounter){
+            correctCounter --;
+            currentText.text = correctCounter.ToString();
     }
 
-    private bool LimitChecker(TextMeshProUGUI currentText,int minValue, int maxValue){
+    private bool LimitChecker(TextMeshProUGUI currentText,int minValue, int maxValue, ref int correctCounter ){
         //retuns bool to show upper bound "true" or lower bound "false"
             //checks the bounds of the values   
             //Checks if Greater than or less than bounds
-            if( counter < minValue){
-                counter = minValue;
+            if( correctCounter < minValue){
+                correctCounter = minValue;
                 currentText.text = minValue.ToString();
                 Debug.Log("Points to low"); 
                 return false;
             }
-            if(counter > maxValue){
-                counter = minValue;
+            if(correctCounter > maxValue){
+                correctCounter = minValue;
                 currentText.text = minValue.ToString();
                 Debug.Log("Points to High"); 
                 return true;
@@ -49,11 +58,23 @@ public class Buttons : MonoBehaviour
            
     }
 
-    public void TagChecker(GameObject button){
+    public void TagChecker(GameObject Object){
         //checks the tag to appropriatly deal with buttons 
         
-        if(button.CompareTag("Turn")){
-            if(LimitChecker(currentTexts, 1,2)){
+        if(Object.CompareTag("Turn")){
+            //counter used here is turn 
+            //gets the text 
+            TextMeshProUGUI ObjectText = Object.GetComponent<TextMeshProUGUI>();
+
+            //deals with what button was pressed
+            if(whatbuttonPressed){
+                AddButton(ObjectText, ref turn);
+            }
+            if(!whatbuttonPressed){
+                MinusButton(ObjectText, turn);
+            }
+
+            if(LimitChecker(ObjectText, 1,2 , ref turn)){
             //if higher than max value 
                 round++;
                 if(round > 5)
@@ -72,6 +93,8 @@ public class Buttons : MonoBehaviour
 
             }
         }
+
+
     }
 
 }

@@ -8,6 +8,7 @@ TagManager:
   - Negative
   - Plus
   - Round
+  - Cp
   layers:
   - Default
   - TransparentFX
