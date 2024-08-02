@@ -7,6 +7,7 @@ TagManager:
   - Turn
   - Negative
   - Plus
+  - Round
   layers:
   - Default
   - TransparentFX
