@@ -6,12 +6,15 @@ using TMPro;
 using System;
 using System.Diagnostics.Tracing;
 using UnityEngine.UIElements;
+using System.Runtime.Serialization.Json;
 
 public class Buttons : MonoBehaviour
 {
 
     private int round = 1;
     public int turn = 1;
+    public int cp1  = 1;
+    private int cp2  = 1;
 
     //plus for true neg for false 
     private bool whatbuttonPressed;
@@ -32,7 +35,7 @@ public class Buttons : MonoBehaviour
             currentText.text = correctCounter.ToString();
     }
 
-    public void MinusButton(TextMeshProUGUI currentText, int correctCounter){
+    public void MinusButton(TextMeshProUGUI currentText, ref int correctCounter){
             correctCounter --;
             currentText.text = correctCounter.ToString();
     }
@@ -62,7 +65,7 @@ public class Buttons : MonoBehaviour
         //checks the tag to appropriatly deal with buttons 
         
         if(Object.CompareTag("Turn")){
-            //counter used here is turn 
+        //counter used here is turn 
             //gets the text 
             TextMeshProUGUI ObjectText = Object.GetComponent<TextMeshProUGUI>();
 
@@ -71,7 +74,7 @@ public class Buttons : MonoBehaviour
                 AddButton(ObjectText, ref turn);
             }
             if(!whatbuttonPressed){
-                MinusButton(ObjectText, turn);
+                MinusButton(ObjectText, ref turn);
             }
 
             if(LimitChecker(ObjectText, 1,2 , ref turn)){
@@ -93,6 +96,25 @@ public class Buttons : MonoBehaviour
 
             }
         }
+
+        if(Object.CompareTag("CP1")){
+        //counter used here is cpCount1 
+
+            //gets the text 
+            TextMeshProUGUI ObjectText = Object.GetComponent<TextMeshProUGUI>();
+            //deals with what button was pressed
+            if(whatbuttonPressed){
+                AddButton(ObjectText, ref turn);
+            }
+            if(!whatbuttonPressed){
+                MinusButton(ObjectText, ref turn);
+            }
+
+            if(LimitChecker(ObjectText,0,5, ref cp1)){
+
+            }
+        }
+        
 
 
     }

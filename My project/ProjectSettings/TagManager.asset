@@ -9,6 +9,8 @@ TagManager:
   - Plus
   - Round
   - Cp
+  - CP1
+  - CP2
   layers:
   - Default
   - TransparentFX
