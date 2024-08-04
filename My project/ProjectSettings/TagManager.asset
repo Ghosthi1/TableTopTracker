@@ -11,6 +11,10 @@ TagManager:
   - Cp
   - CP1
   - CP2
+  - Primary1
+  - Primary2
+  - Secondary2
+  - Secondary1
   layers:
   - Default
   - TransparentFX
