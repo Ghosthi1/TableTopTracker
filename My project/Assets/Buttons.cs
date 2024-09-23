@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 
 public class Buttons : MonoBehaviour
@@ -72,6 +73,10 @@ public class Buttons : MonoBehaviour
         //counter used here is turn 
             //gets the text 
             TextMeshProUGUI ObjectText = Object.GetComponent<TextMeshProUGUI>();
+            
+            //gest rounds object and text
+            GameObject rounds = GameObject.Find("Round");
+            TextMeshProUGUI roundsText = rounds.GetComponent<TextMeshProUGUI>();
 
             //deals with what button was pressed
             if(whatbuttonPressed){
@@ -80,6 +85,7 @@ public class Buttons : MonoBehaviour
             if(!whatbuttonPressed){
                 turn = MinusButton(ObjectText, turn);
             }
+
             if(turn > 2){
             //if higher than max value 
                 round++;
@@ -90,15 +96,29 @@ public class Buttons : MonoBehaviour
                 }
                 else
                 {
-                    //gest rounds object and text
-                    GameObject rounds = GameObject.Find("Round");
-                    TextMeshProUGUI roundsText = rounds.GetComponent<TextMeshProUGUI>();
+                    round = LimitChecker(roundsText, 1, 5, round);
                     //sets the text 
                     roundsText.text = "Round: " + round.ToString();
                 }
+                turn = LimitChecker(ObjectText, 1,2 , turn);
             }
-
-            turn = LimitChecker(ObjectText, 1,2 , turn);
+            if(turn < 1){
+                round--;
+                //resets round to max and updates canvas
+                turn = 2;
+                ObjectText.text = turn.ToString();
+                if(round < 1){
+                    turn = LimitChecker(ObjectText, 1,1 , turn);
+                    round = LimitChecker(ObjectText, 1,5 , round);
+                }
+                else {
+                    round = LimitChecker(roundsText, 1, 5, round);
+                    //sets the text 
+                    roundsText.text = "Round: " + round.ToString();
+                }
+                
+                turn = LimitChecker(ObjectText, 1,2 , turn);
+            }
 
         }
 
@@ -107,6 +127,7 @@ public class Buttons : MonoBehaviour
 
             //gets the text 
             TextMeshProUGUI ObjectText = Object.GetComponent<TextMeshProUGUI>();
+
             //deals with what button was pressed
             if(whatbuttonPressed){
                 cp1 = AddButton(ObjectText, cp1);       
