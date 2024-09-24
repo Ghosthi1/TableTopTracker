@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using System;
 
 
 public class Buttons : MonoBehaviour
@@ -16,6 +17,8 @@ public class Buttons : MonoBehaviour
     private int primary2 = 0;
     private int secondary1 = 0;
     private int secondary2 = 0;
+    public TextMeshProUGUI player1Text;
+    public TextMeshProUGUI player2Text;
 
     //plus for true neg for false 
     private bool whatbuttonPressed;
@@ -60,8 +63,6 @@ public class Buttons : MonoBehaviour
                 Debug.Log("Points to High"); 
                 return counter;
             }
-            //default return 
-            Debug.Log("Default"); 
             return counter;
            
     }
@@ -223,6 +224,18 @@ public class Buttons : MonoBehaviour
             UpdateTotal(2);
         }
 
+        if(Object.CompareTag("Player1")){
+            UpdatePlayers(player1Text.ToString(), true);
+        }
+        if(Object.CompareTag("Player2")){
+            UpdatePlayers(player2Text.ToString(), false);
+        }
+
+    }
+
+    private void UpdatePlayers(String player, bool player1Or2){
+        //checks what player it is then updates ui
+        Debug.Log(player.ToString());
     }
     
     private void UpdateTotal(int player){
