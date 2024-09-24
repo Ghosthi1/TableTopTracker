@@ -17,10 +17,8 @@ public class Buttons : MonoBehaviour
     private int primary2 = 0;
     private int secondary1 = 0;
     private int secondary2 = 0;
-
     public TextMeshProUGUI player1Textout;
     public TextMeshProUGUI player2Textout;
-
     public TMP_InputField player1Textin;
     public TMP_InputField player2Textin;
     //plus for true neg for false 
@@ -71,8 +69,7 @@ public class Buttons : MonoBehaviour
     }
 
     public void TagChecker(GameObject Object){
-        //checks the tag to appropriatly deal with buttons 
-        
+        //checks the tag to appropriatly deal with buttons        
         if(Object.CompareTag("Turn")){
         //counter used here is turn 
             //gets the text 
@@ -125,7 +122,6 @@ public class Buttons : MonoBehaviour
             }
 
         }
-
         if(Object.CompareTag("CP1")){
         //counter used here is cp1 
 
@@ -141,8 +137,7 @@ public class Buttons : MonoBehaviour
             }
 
             cp1 = LimitChecker(ObjectText,0,5, cp1);  
-        }
-        
+        }       
         if(Object.CompareTag("CP2")){
         //counter used here is cp2 
 
@@ -158,7 +153,6 @@ public class Buttons : MonoBehaviour
 
             cp2 = LimitChecker(ObjectText,0,5, cp2);  
         }
-
         if(Object.CompareTag("Primary1")){
         //counter used here is primary1
 
@@ -175,7 +169,6 @@ public class Buttons : MonoBehaviour
             primary1 = LimitChecker(ObjectText,0,100, primary1);  
             UpdateTotal(1); 
         }
-
         if(Object.CompareTag("Primary2")){
         //counter used here is primary2 
 
@@ -191,8 +184,7 @@ public class Buttons : MonoBehaviour
 
             primary2 = LimitChecker(ObjectText,0,100, primary2); 
             UpdateTotal(2); 
-        }
-        
+        }     
         if(Object.CompareTag("Secondary1")){
         //counter used here is secondary1 
             Debug.Log("Done");
@@ -209,7 +201,6 @@ public class Buttons : MonoBehaviour
             secondary1 = LimitChecker(ObjectText,0,100, secondary1); 
             UpdateTotal(1); 
         }
-
         if(Object.CompareTag("Secondary2")){
         //counter used here is secondary2 
 
@@ -226,7 +217,6 @@ public class Buttons : MonoBehaviour
             secondary2 = LimitChecker(ObjectText,0,100, secondary2);  
             UpdateTotal(2);
         }
-
         if(Object.CompareTag("Player1")){
 
             UpdatePlayers(player1Textin, true);
@@ -235,7 +225,6 @@ public class Buttons : MonoBehaviour
 
             UpdatePlayers(player2Textin, false);
         }
-
     }
 
     private void UpdatePlayers(TMP_InputField player, bool player1Or2){
