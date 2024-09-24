@@ -15,6 +15,8 @@ TagManager:
   - Primary2
   - Secondary2
   - Secondary1
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX

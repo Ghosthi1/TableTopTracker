@@ -17,9 +17,12 @@ public class Buttons : MonoBehaviour
     private int primary2 = 0;
     private int secondary1 = 0;
     private int secondary2 = 0;
-    public TextMeshProUGUI player1Text;
-    public TextMeshProUGUI player2Text;
 
+    public TextMeshProUGUI player1Textout;
+    public TextMeshProUGUI player2Textout;
+
+    public TMP_InputField player1Textin;
+    public TMP_InputField player2Textin;
     //plus for true neg for false 
     private bool whatbuttonPressed;
 
@@ -225,17 +228,24 @@ public class Buttons : MonoBehaviour
         }
 
         if(Object.CompareTag("Player1")){
-            UpdatePlayers(player1Text.ToString(), true);
+
+            UpdatePlayers(player1Textin, true);
         }
         if(Object.CompareTag("Player2")){
-            UpdatePlayers(player2Text.ToString(), false);
+
+            UpdatePlayers(player2Textin, false);
         }
 
     }
 
-    private void UpdatePlayers(String player, bool player1Or2){
-        //checks what player it is then updates ui
-        Debug.Log(player.ToString());
+    private void UpdatePlayers(TMP_InputField player, bool player1Or2){
+        //checks what player it is then updates ui true for player 1 
+        if(player1Or2 == true){
+            player1Textout.text = player.text;
+        }
+        if(player1Or2 == false){
+            player2Textout.text = player.text;
+        }
     }
     
     private void UpdateTotal(int player){
