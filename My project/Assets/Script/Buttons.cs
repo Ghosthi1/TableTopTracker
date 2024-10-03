@@ -93,7 +93,6 @@ public class Buttons : MonoBehaviour
                 if(round > 5)
                 {
                     Debug.Log("game over ");
-                    Application.Quit();
                 }
                 else
                 {
