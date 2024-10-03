@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Menus : MonoBehaviour
@@ -10,36 +11,44 @@ public class Menus : MonoBehaviour
     public GameObject game;
     public GameObject pause;
     bool active = false;
+    Coroutine getinput;
+    bool keyHeld = false;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape) && active == false){
-            //if escape pressed open pause menu
-            active = true;
-            ChangeMenuPause(active);
-        }
-        if(Input.GetKeyUp(KeyCode.Escape) && active == true){
-            active = false;
-            ChangeMenuPause(active);
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if(active == true){
+                ChangeMenuPause(active);
+                active = false;
+            }
+            else if(active == false){
+                //if escape pressed open pause menu
+                Debug.Log("Escape"+ active);
+                ChangeMenuPause(active);
+                active = true;
+            }
         }
 
     }
 
-    public void ChangeMenuPause(bool active){
-        if(active == true){
+
+    private void ChangeMenuPause(bool actives){
+        if(actives){
+            Debug.Log("Pause");
             start.SetActive(false);
             game.SetActive(false);
             pause.SetActive(true);
         }
-        if(active == false){
+        if(!actives){
+            Debug.Log("Game");
             start.SetActive(false);
             game.SetActive(true);
             pause.SetActive(false);
         }
     }
 
-    public void ChangeMenuStart(){
+    private void ChangeMenuStart(){
         //changes what ui is active 
         start.SetActive(false);
         game.SetActive(true);
