@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menus : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class Menus : MonoBehaviour
     }
 
 
-    private void ChangeMenuPause(bool actives){
+    public void ChangeMenuPause(bool actives){
         if(actives){
             Debug.Log("Pause");
             start.SetActive(false);
@@ -44,6 +45,10 @@ public class Menus : MonoBehaviour
             game.SetActive(true);
             pause.SetActive(false);
         }
+    }
+
+    public void Restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void ChangeMenuStart(){
