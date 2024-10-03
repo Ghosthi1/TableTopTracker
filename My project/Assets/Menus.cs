@@ -11,8 +11,6 @@ public class Menus : MonoBehaviour
     public GameObject game;
     public GameObject pause;
     bool active = false;
-    Coroutine getinput;
-    bool keyHeld = false;
 
     // Update is called once per frame
     void Update()
