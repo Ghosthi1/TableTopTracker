@@ -1,6 +1,4 @@
-# 40k APP
- 40k APP
-
+# TableTopTracker
 ## Todo 
  - Add player name entry -
  - Add Mission selection to change score increce eg: by 5 for certain missions 
